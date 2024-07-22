@@ -1,0 +1,25 @@
+﻿@page "/counter"
+@using Newtonsoft.Json
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+@code {
+    private string currentCount = "";
+    private HttpClient _client = new HttpClient();
+
+    private async Task IncrementCount()
+    {
+        var response = await _client.GetAsync("http://localhost:5036/api/values");
+        var myDeserializedClass = JsonConvert.DeserializeObject<string[]>(await response.Content.ReadAsStringAsync());
+
+        currentCount = string.Join("\r\n", myDeserializedClass);
+    }
+}

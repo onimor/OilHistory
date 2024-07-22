@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilHistory.Web", "OilHistory.Web\OilHistory.Web.csproj", "{59085EBA-334B-458F-BB44-209FF6C8F646}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilHistory.Web", "OilHistory.Web\OilHistory.Web.csproj", "{FD492816-ECC3-4809-876E-CE67F37619D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilHistory.Client", "OilHistory.Client\OilHistory.Client.csproj", "{1952F97C-B9D1-483E-BA89-DE6BB4FB663B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59085EBA-334B-458F-BB44-209FF6C8F646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59085EBA-334B-458F-BB44-209FF6C8F646}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59085EBA-334B-458F-BB44-209FF6C8F646}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59085EBA-334B-458F-BB44-209FF6C8F646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD492816-ECC3-4809-876E-CE67F37619D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD492816-ECC3-4809-876E-CE67F37619D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD492816-ECC3-4809-876E-CE67F37619D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD492816-ECC3-4809-876E-CE67F37619D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1952F97C-B9D1-483E-BA89-DE6BB4FB663B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1952F97C-B9D1-483E-BA89-DE6BB4FB663B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1952F97C-B9D1-483E-BA89-DE6BB4FB663B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1952F97C-B9D1-483E-BA89-DE6BB4FB663B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
