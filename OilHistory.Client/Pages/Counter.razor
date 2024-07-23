@@ -17,7 +17,7 @@
 
     private async Task IncrementCount()
     {
-        var response = await _client.GetAsync("http://localhost:5036/api/values");
+        var response = await _client.GetAsync("http://localhost:21756/api/values");
         var myDeserializedClass = JsonConvert.DeserializeObject<string[]>(await response.Content.ReadAsStringAsync());
 
         currentCount = string.Join("\r\n", myDeserializedClass);

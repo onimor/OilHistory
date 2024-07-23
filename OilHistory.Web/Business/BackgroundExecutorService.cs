@@ -1,7 +1,7 @@
 ﻿using System.Timers;
 using OilHistory.Web.Business;
 
-namespace OilHistory.Business
+namespace OilHistory.Web.Business
 {
     public class BackgroundExecutorService : IHostedService, IDisposable
     {

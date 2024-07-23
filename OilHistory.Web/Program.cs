@@ -1,6 +1,6 @@
-using OilHistory.Business;
 using OilHistory.Client.Pages;
-using OilHistory.Components;
+using OilHistory.Web.Business;
+using OilHistory.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
