@@ -1,6 +1,6 @@
-using OilHistory.Client.Pages;
-using OilHistory.Web.Business;
+using OilHistory.Web.Business.BackgroundServices;
 using OilHistory.Web.Components;
+using OilHistory.Web.Extensions.EndpointExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddHostedService<BackgroundExecutorService>();
-builder.Services.AddSingleton<OilHistory.Web.Business.OilService>();
-builder.Services.AddControllers();
+builder.Services.AddEndpointDefinitions(typeof(IEndpointDefinition)); 
+builder.Services.AddHostedService<BackgroundExecutorService>(); 
 
 var app = builder.Build();
 
@@ -22,13 +21,12 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-}
-app.MapControllers();
+} 
 app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(OilHistory.Client._Imports).Assembly);
-
+app.UseEndpointDefinitions();
 app.Run();

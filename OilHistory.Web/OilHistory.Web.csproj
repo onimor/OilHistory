@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OilHistory.Client\OilHistory.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
