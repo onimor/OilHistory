@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Timers;
-using OilHistory.Web.Business.Services.Oil;
+﻿using OilHistory.Web.Business.Services.Oil;
 
 namespace OilHistory.Web.Business.BackgroundServices
 {
@@ -8,7 +6,8 @@ namespace OilHistory.Web.Business.BackgroundServices
     {
         private ILogger<BackgroundExecutorService> _logger;
         private IOilService _oilService; 
-        private DateTime? _lastGetDate; 
+        private DateTime? _lastGetDate;
+        private CancellationTokenSource? _cancellationTokenSource;
 
         public BackgroundExecutorService(
             ILogger<BackgroundExecutorService> logger,
@@ -20,14 +19,15 @@ namespace OilHistory.Web.Business.BackgroundServices
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation($"запущен!");
-            _ = Task.Factory.StartNew(() => DoWork(cancellationToken), TaskCreationOptions.LongRunning);
+        { 
+            _cancellationTokenSource = new CancellationTokenSource();
+            _ = Task.Factory.StartNew(() => DoWork(_cancellationTokenSource.Token), TaskCreationOptions.LongRunning);
             return Task.CompletedTask;
         }
 
         private async Task DoWork(CancellationToken cancellationToken)
-        { 
+        {
+            _logger.LogInformation($"запущен!");
             while (cancellationToken.IsCancellationRequested == false)
             {
                 try
@@ -44,16 +44,20 @@ namespace OilHistory.Web.Business.BackgroundServices
                     _lastGetDate = DateTime.Now;
                     await Task.Delay(1000);
                 }
-            } 
+            }
+            _logger.LogInformation($"остановлен!");
         } 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            _cancellationTokenSource?.Cancel();
             return Task.CompletedTask;
         }
 
         public void Dispose()
         {
+            _cancellationTokenSource?.Dispose();
             _lastGetDate = default;
+            GC.SuppressFinalize(this);
         }
     }
 }
