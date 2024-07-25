@@ -20,7 +20,7 @@ namespace OilHistory.Web.Business.Services.Oil
 
             foreach (var xxx in result.Data)
             {
-                _superPuperDatabase.Add(xxx.Product.ShortTitle + " " + xxx.Price.Value + " " + xxx.Price.Currency);
+                _superPuperDatabase.Add(xxx.Product.ShortTitle + " " + xxx.Price.Price + " " + xxx.Price.Currency);
             }
             _superPuperDatabase.Add("bla bla 1");
             _superPuperDatabase.Add("bla bla 2");
@@ -40,7 +40,7 @@ namespace OilHistory.Web.Business.Services.Oil
 
             foreach (var xxx in result.Data)
             {
-                _superPuperDatabase.Add(xxx.Product.ShortTitle + " " + xxx.Price.Value + " " + xxx.Price.Currency);
+                _superPuperDatabase.Add(xxx.Product.ShortTitle + " " + xxx.Price.Price + " " + xxx.Price.Currency);
             }
             _superPuperDatabase.Add("bla bla x");
             _superPuperDatabase.Add("bla bla y");
