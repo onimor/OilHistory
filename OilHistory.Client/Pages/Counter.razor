@@ -1,25 +1,48 @@
-﻿@page "/counter"
-@using Newtonsoft.Json
-@rendermode InteractiveWebAssembly
+﻿@page "/counter"  
+@using OilHistory.Client.Pages.Components
+@inject HttpClient _httpClient
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Цены</PageTitle>
+<div>
+    <h1>Цены на @DateTime.Now.ToString("dd.MM.yyyy")</h1>
+    <button class="btn btn-primary" @onclick="IncrementCount">Обновить</button>
+</div>
 
-<h1>Counter</h1>
+<div>
+    @if (_oilPrices is null)
+    {
+        <p role="status">Ищем..</p>
+    }
+    else
+    {
+        foreach (var oilPrice in _oilPrices)
+        {
+           <OilPriceViewer OilPrice="@oilPrice"/>
+        }
+    }
+</div>
 
-<p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
 
 
 @code {
-    private string currentCount = "";
-    private HttpClient _client = new HttpClient();
-
+    private string[]? _oilPrices;  
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            await LoadOilPrices();
+        }
+    }
     private async Task IncrementCount()
     {
-        var response = await _client.GetAsync("http://localhost:21756/api/values");
-        var myDeserializedClass = JsonConvert.DeserializeObject<string[]>(await response.Content.ReadAsStringAsync());
-
-        currentCount = string.Join("\r\n", myDeserializedClass);
+        await LoadOilPrices();
+    }
+    private async Task LoadOilPrices()
+    {
+        _oilPrices = await _httpClient.GetFromJsonAsync<string[]>("api/v1/Oils/History");
+        StateHasChanged();
     }
 }
