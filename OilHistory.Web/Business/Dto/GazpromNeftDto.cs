@@ -6,13 +6,12 @@
         {
             public int Id { get; set; }
             public Product Product { get; set; }
-            public Price Price { get; set; }
+            public PriceValue Price { get; set; }
         }
 
-        public class Price
+        public class PriceValue
         {
             public string Currency { get; set; }
-            public double Value { get; set; }
 
             public DateTime Since { get; set; }
         }
